@@ -6,6 +6,7 @@
 * [0.5](#0.5)
 
 
+<<<<<<< HEAD
 ## Unreleased
 ### Added
 ### Changed
@@ -19,6 +20,31 @@
 ### Contributors
 
 
+||||||| bd59573
+=======
+## Unreleased
+### Added
+
+* Support for the linux-drm-syncobj-v1 protocol ([wlroots!4715][wlroots!4715], [#685][685])
+* Allow the use of non-system wlroots library ([#646][646])
+
+[wlroots!4715]: https://gitlab.freedesktop.org/wlroots/wlroots/-/merge_requests/4715
+[685]: https://codeberg.org/dwl/dwl/pulls/685
+[646]: https://codeberg.org/dwl/dwl/pulls/646
+
+
+### Changed
+### Deprecated
+### Removed
+### Fixed
+
+* Crash when a client is created while all outputs are disabled.
+
+### Security
+### Contributors
+
+
+>>>>>>> 6cd26568d5b8be2252ac0def36cd194b4fb2d7c3
 ## 0.7
 
 See also [0.6](#0.6) release notes. 0.7 builds against wlroots 0.18.x.
