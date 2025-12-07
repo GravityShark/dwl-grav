@@ -827,9 +827,15 @@ commitlayersurfacenotify(struct wl_listener *listener, void *data)
 
 	if (l->layer_surface->initial_commit) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		wlr_fractional_scale_v1_notify_scale(layer_surface->surface, l->mon->wlr_output->scale);
 		wlr_surface_set_preferred_buffer_scale(layer_surface->surface, (int32_t)ceilf(l->mon->wlr_output->scale));
 
+||||||| bd59573
+=======
+		client_set_scale(layer_surface->surface, l->mon->wlr_output->scale);
+
+>>>>>>> 6cd26568d5b8be2252ac0def36cd194b4fb2d7c3
 ||||||| bd59573
 =======
 		client_set_scale(layer_surface->surface, l->mon->wlr_output->scale);
@@ -873,10 +879,19 @@ commitnotify(struct wl_listener *listener, void *data)
 		 */
 		applyrules(c);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (c->mon) {
 			wlr_surface_set_preferred_buffer_scale(client_surface(c), (int)ceilf(c->mon->wlr_output->scale));
 			wlr_fractional_scale_v1_notify_scale(client_surface(c), c->mon->wlr_output->scale);
 		}
+||||||| bd59573
+		wlr_surface_set_preferred_buffer_scale(client_surface(c), (int)ceilf(c->mon->wlr_output->scale));
+		wlr_fractional_scale_v1_notify_scale(client_surface(c), c->mon->wlr_output->scale);
+=======
+		if (c->mon) {
+			client_set_scale(client_surface(c), c->mon->wlr_output->scale);
+		}
+>>>>>>> 6cd26568d5b8be2252ac0def36cd194b4fb2d7c3
 ||||||| bd59573
 		wlr_surface_set_preferred_buffer_scale(client_surface(c), (int)ceilf(c->mon->wlr_output->scale));
 		wlr_fractional_scale_v1_notify_scale(client_surface(c), c->mon->wlr_output->scale);
