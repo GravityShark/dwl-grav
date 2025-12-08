@@ -18,6 +18,12 @@
             version = "0.8-dev";
             src = self;
             buildInputs = with pkgs; [
+              libinput
+              libxcb
+              libxkbcommon
+              pixman
+              wayland
+              wayland-protocols
               wlroots_0_19
             ];
           });
