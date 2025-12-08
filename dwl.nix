@@ -28,7 +28,7 @@
         use configH instead
       '' conf
     else
-      ./config.h,
+      ./myconfig.h,
   # Deprecated options
   # Remove them before next version of either Nixpkgs or dwl itself
   conf ? null,
