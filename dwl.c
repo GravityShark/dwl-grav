@@ -2683,9 +2683,12 @@ spawnorfocus(const Arg *arg)
 {
 	Client *c;
 
-	/* search for first client that has an app_id */
+	const char *match, *appid, *title;
+
+	match = (char**)arg->v[0];
+
 	wl_list_for_each(c, &clients, link) {
-		if (strstr((char *)c->surface.xdg->toplevel->app_id, ((char**)arg->v)[0]) != NULL) {
+-		if (strstr(client_get_title(c), match) || strstr(client_get_appid(c), match))
 			if (VISIBLEON(c, selmon)) {
 				if (focustop(selmon) == c) {
 					// hide
@@ -2697,14 +2700,15 @@ spawnorfocus(const Arg *arg)
 				}
 			} else {
 				// show
-				c->tags = selmon->tagset[selmon->seltags];
+				selmon->tagset[selmon->seltags] = c->tags;
 				focusclient(c, 1);
 			}
 			arrange(selmon);
 			return;
 		}
 	}
-
+	arg->v++;
+	a.v = ((const char **)a.v) + 1;
 	spawn(arg);
 }
 
