@@ -14,9 +14,8 @@
     {
       packages.${system} =
         let
-          dwl-grav = import ./dwl.nix {
-            inherit pkgs;
-            self = self.outPath;
+          dwl-grav = pkgs.callPackage ./dwl.nix {
+            inherit pkgs self;
           };
         in
         {
