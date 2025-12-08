@@ -2,8 +2,8 @@ this is just my fork yo
 
 ## my own instructions to keep this up to date with upstream
 
-1.  `git pull upstream main`
-2.  `git diff upstream/main grav --diff-filter=M`
+1. `git fetch upstream`
+2. `git diff upstream/main grav --diff-filter=M`
 
 ## Links
 

@@ -1,3 +1,6 @@
 [remote "origin"]
 	pushurl = git@github.com:GravityShark/dwl-grav.git
 	; pushurl = git@github.com:Git/dwl-conf-patches.git
+[remote "upstream"]
+	url = https://codeberg.org/dwl/dwl
+	fetch = +refs/heads/*:refs/remotes/upstream/*
