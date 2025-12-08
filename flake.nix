@@ -17,15 +17,22 @@
           dwl-grav = pkgs.dwl.overrideAttrs (old: {
             version = "0.8-dev";
             src = self;
-            buildInputs = with pkgs; [
-              libinput
-              libxcb
-              libxkbcommon
-              pixman
-              wayland
-              wayland-protocols
-              wlroots_0_19
-            ];
+            buildInputs =
+              with pkgs;
+              [
+                libinput
+                libxcb
+                libxkbcommon
+                pixman
+                wayland
+                wayland-protocols
+                wlroots_0_19
+              ]
+              ++ lib.optionals enableXWayland [
+                libX11
+                xcbutilwm
+                xwayland
+              ];
           });
         in
         {
