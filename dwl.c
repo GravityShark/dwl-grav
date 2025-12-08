@@ -8,6 +8,7 @@
 #include <signal.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include <sys/wait.h>
 #include <time.h>
 #include <unistd.h>
@@ -2671,7 +2672,7 @@ spawn(const Arg *arg)
 {
 	if (fork() == 0) {
 		dup2(STDERR_FILENO, STDOUT_FILENO);
-		setsid()
+		setsid();
 		execvp(((char **)arg->v)[0], (char **)arg->v);
 		die("dwl: execvp %s failed:", ((char **)arg->v)[0]);
 	}
@@ -2681,36 +2682,30 @@ void
 spawnorfocus(const Arg *arg)
 {
 	Client *c;
-	unsigned int found = 0;
 
-	/* search for first window that matches the scratchkey */
+	/* search for first client that has an app_id */
 	wl_list_for_each(c, &clients, link) {
-		if (c->scratchkey == ((char**)arg->v)[0][0]) {
-			found = 1;
-			break;
-		}
-	}
-
-
-	if (found) {
-		if (VISIBLEON(c, selmon)) {
-			if (focustop(selmon) == c) {
-				// hide
-				c->tags = 0;
-				focusclient(focustop(selmon), 1);
+		if (strstr((char *)c->surface.xdg->toplevel->app_id, ((char**)arg->v)[0]) != NULL) {
+			if (VISIBLEON(c, selmon)) {
+				if (focustop(selmon) == c) {
+					// hide
+					c->tags = 0;
+					focusclient(focustop(selmon), 1);
+				} else {
+					// focus
+					focusclient(c, 1);
+				}
 			} else {
-				// focus
+				// show
+				c->tags = selmon->tagset[selmon->seltags];
 				focusclient(c, 1);
 			}
-		} else {
-			// show
-			c->tags = selmon->tagset[selmon->seltags];
-			focusclient(c, 1);
+			arrange(selmon);
+			return;
 		}
-		arrange(selmon);
-	} else{
-		spawn(arg);
 	}
+
+	spawn(arg);
 }
 
 

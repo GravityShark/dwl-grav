@@ -128,8 +128,8 @@ static const char *menucmd[] = { "wmenu-run", NULL };
 static const Key keys[] = {
 	/* Note that Shift changes certain key codes: c -> C, 2 -> at, etc. */
 	/* modifier                  key                 function        argument */
-	{ WLR_MODIFIER_CTRL,         XKB_KEY_Escape,      spawn,          {.v = menucmd} },
-	{ MODKEY,                    XKB_KEY_t,          spawn,          {.v = termcmd} },
+	{ WLR_MODIFIER_CTRL,         XKB_KEY_Escape,     spawn,          {.v = menucmd} },
+	{ MODKEY,                    XKB_KEY_t,          spawnorfocus,   {.v = termcmd} },
 	{ MODKEY,                    XKB_KEY_Down,       focusstack,     {.i = +1} },
 	{ MODKEY,                    XKB_KEY_Up,         focusstack,     {.i = -1} },
 	{ MODKEY|WLR_MODIFIER_SHIFT, XKB_KEY_Left,       incnmaster,     {.i = +1} },
