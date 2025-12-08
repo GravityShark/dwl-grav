@@ -2688,11 +2688,13 @@ spawnorfocus(const Arg *arg)
 	wl_list_for_each(c, &clients, link) 
 		if (strstr(client_get_title(c), needle)
 				|| strstr(client_get_appid(c), needle)) {
-			if (!VISIBLEON(c, selmon)) {
+			// if (selmon != c->mon) {
+			// 	focusclient(focustop(selmon), 1);
+			// }
+			if (!(c->tags & selmon->tagset[selmon->seltags])) {
 				selmon->tagset[selmon->seltags] = c->tags;
-			} else {
-				c->tags = selmon->tagset[selmon->seltags];
 			}
+
 			focusclient(c, 1);
 			arrange(selmon);
 			return;
