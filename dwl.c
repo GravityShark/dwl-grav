@@ -2682,31 +2682,22 @@ void
 spawnorfocus(const Arg *arg)
 {
 	Client *c;
-	const char *match = ((const char **)arg->v)[0];
+	const char **argv = (const char **)arg->v;
+	const char *needle = argv[0] ? argv[0] : argv[1];
 
 	wl_list_for_each(c, &clients, link) 
-		if (strstr(client_get_title(c), match)
-				|| strstr(client_get_appid(c), match)) {
-			if (VISIBLEON(c, selmon)) {
-				if (focustop(selmon) == c) {
-					// hide
-					c->tags = 0;
-					focusclient(focustop(selmon), 1);
-				} else {
-					// focus
-					focusclient(c, 1);
-				}
-			} else {
-				// show
+		if (strstr(client_get_title(c), needle)
+				|| strstr(client_get_appid(c), needle)) {
+			if (!VISIBLEON(c, selmon)) {
 				selmon->tagset[selmon->seltags] = c->tags;
-				focusclient(c, 1);
 			}
+			focusclient(c, 1);
 			arrange(selmon);
 			return;
 		}
-	const char **argv = (const char **)arg->v;
-	argv = argv + 1;      // skip first item
-	spawn(arg);
+	/* Skip over the needle */
+	const Arg cmd = {.v = argv + 1};
+	spawn(&cmd);
 }
 
 
