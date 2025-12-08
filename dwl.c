@@ -2700,7 +2700,6 @@ spawnorfocus(const Arg *arg)
 	spawn(&cmd);
 }
 
-
 void
 startdrag(struct wl_listener *listener, void *data)
 {
