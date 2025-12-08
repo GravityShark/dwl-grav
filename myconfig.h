@@ -26,8 +26,8 @@ static int log_level = WLR_ERROR;
 static const Rule rules[] = {
 	/* app_id             title       tags mask     isfloating   monitor */
 	/* examples: */
-	{ "Gimp_EXAMPLE",     NULL,       0,            1,           -1 }, /* Start on currently visible tags floating, not tiled */
-	{ "firefox_EXAMPLE",  NULL,       1 << 8,       0,           -1 }, /* Start on ONLY tag "9" */
+	// { "Gimp_EXAMPLE",     NULL,       0,            1,           -1 }, /* Start on currently visible tags floating, not tiled */
+	// { "firefox_EXAMPLE",  NULL,       1 << 8,       0,           -1 }, /* Start on ONLY tag "9" */
 };
 
 /* layout(s) */
@@ -122,14 +122,14 @@ static const enum libinput_config_tap_button_map button_map = LIBINPUT_CONFIG_TA
 #define SHCMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
 
 /* commands */
-static const char *termcmd[] = { "ghostty", NULL };
 static const char *menucmd[] = { "wmenu-run", NULL };
+static const char *termcmd[] = { "ghostty", "ghostty", NULL };
 
 static const Key keys[] = {
 	/* Note that Shift changes certain key codes: c -> C, 2 -> at, etc. */
 	/* modifier                  key                 function        argument */
-	{ WLR_MODIFIER_CTRL,         XKB_KEY_Escape,      spawn,          {.v = menucmd} },
-	{ MODKEY,                    XKB_KEY_t,          spawn,          {.v = termcmd} },
+	{ WLR_MODIFIER_CTRL,         XKB_KEY_Escape,     spawn,          {.v = menucmd} },
+	{ MODKEY,                    XKB_KEY_t,          spawnorfocus,   {.v = termcmd} },
 	{ MODKEY,                    XKB_KEY_Down,       focusstack,     {.i = +1} },
 	{ MODKEY,                    XKB_KEY_Up,         focusstack,     {.i = -1} },
 	{ MODKEY|WLR_MODIFIER_SHIFT, XKB_KEY_Left,       incnmaster,     {.i = +1} },
