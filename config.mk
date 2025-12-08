@@ -1,16 +1,4 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
-_VERSION = 0.7
-||||||| bd59573
-_VERSION = 0.7-rc1
-=======
 _VERSION = 0.8-dev
->>>>>>> 6cd26568d5b8be2252ac0def36cd194b4fb2d7c3
-||||||| bd59573
-_VERSION = 0.7-rc1
-=======
-_VERSION = 0.8-dev
->>>>>>> 6cd26568d5b8be2252ac0def36cd194b4fb2d7c3
 VERSION  = `git describe --tags --dirty 2>/dev/null || echo $(_VERSION)`
 
 PKG_CONFIG = pkg-config

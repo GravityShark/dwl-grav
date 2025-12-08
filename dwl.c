@@ -826,21 +826,8 @@ commitlayersurfacenotify(struct wl_listener *listener, void *data)
 	struct wlr_layer_surface_v1_state old_state;
 
 	if (l->layer_surface->initial_commit) {
-<<<<<<< HEAD
-<<<<<<< HEAD
-		wlr_fractional_scale_v1_notify_scale(layer_surface->surface, l->mon->wlr_output->scale);
-		wlr_surface_set_preferred_buffer_scale(layer_surface->surface, (int32_t)ceilf(l->mon->wlr_output->scale));
-
-||||||| bd59573
-=======
 		client_set_scale(layer_surface->surface, l->mon->wlr_output->scale);
 
->>>>>>> 6cd26568d5b8be2252ac0def36cd194b4fb2d7c3
-||||||| bd59573
-=======
-		client_set_scale(layer_surface->surface, l->mon->wlr_output->scale);
-
->>>>>>> 6cd26568d5b8be2252ac0def36cd194b4fb2d7c3
 		/* Temporarily set the layer's current state to pending
 		 * so that we can easily arrange it */
 		old_state = l->layer_surface->current;
@@ -878,28 +865,9 @@ commitnotify(struct wl_listener *listener, void *data)
 		 * a wrong monitor.
 		 */
 		applyrules(c);
-<<<<<<< HEAD
-<<<<<<< HEAD
-		if (c->mon) {
-			wlr_surface_set_preferred_buffer_scale(client_surface(c), (int)ceilf(c->mon->wlr_output->scale));
-			wlr_fractional_scale_v1_notify_scale(client_surface(c), c->mon->wlr_output->scale);
-		}
-||||||| bd59573
-		wlr_surface_set_preferred_buffer_scale(client_surface(c), (int)ceilf(c->mon->wlr_output->scale));
-		wlr_fractional_scale_v1_notify_scale(client_surface(c), c->mon->wlr_output->scale);
-=======
 		if (c->mon) {
 			client_set_scale(client_surface(c), c->mon->wlr_output->scale);
 		}
->>>>>>> 6cd26568d5b8be2252ac0def36cd194b4fb2d7c3
-||||||| bd59573
-		wlr_surface_set_preferred_buffer_scale(client_surface(c), (int)ceilf(c->mon->wlr_output->scale));
-		wlr_fractional_scale_v1_notify_scale(client_surface(c), c->mon->wlr_output->scale);
-=======
-		if (c->mon) {
-			client_set_scale(client_surface(c), c->mon->wlr_output->scale);
-		}
->>>>>>> 6cd26568d5b8be2252ac0def36cd194b4fb2d7c3
 		setmon(c, NULL, 0); /* Make sure to reapply rules in mapnotify() */
 
 		wlr_xdg_toplevel_set_wm_capabilities(c->surface.xdg->toplevel,
