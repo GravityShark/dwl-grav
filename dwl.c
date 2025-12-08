@@ -2682,13 +2682,11 @@ void
 spawnorfocus(const Arg *arg)
 {
 	Client *c;
+	const char *match = ((const char **)arg->v)[0];
 
-	const char *match, *appid, *title;
-
-	match = (char**)arg->v[0];
-
-	wl_list_for_each(c, &clients, link) {
--		if (strstr(client_get_title(c), match) || strstr(client_get_appid(c), match))
+	wl_list_for_each(c, &clients, link) 
+		if (strstr(client_get_title(c), match)
+				|| strstr(client_get_appid(c), match)) {
 			if (VISIBLEON(c, selmon)) {
 				if (focustop(selmon) == c) {
 					// hide
@@ -2706,8 +2704,8 @@ spawnorfocus(const Arg *arg)
 			arrange(selmon);
 			return;
 		}
-	}
-	a.v = ((const char **)a.v) + 1;
+	const char **argv = (const char **)arg->v;
+	argv = argv + 1;      // skip first item
 	spawn(arg);
 }
 
