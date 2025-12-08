@@ -14,7 +14,10 @@
     {
       packages.${system} =
         let
-          dwl-grav = import ./dwl.nix { inherit pkgs; };
+          dwl-grav = import ./dwl.nix {
+            inherit pkgs;
+            self = self.outPath;
+          };
         in
         {
           dwl-grav = dwl-grav;
