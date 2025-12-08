@@ -14,23 +14,7 @@
     {
       packages.${system} =
         let
-          # dwl-grav = pkgs.callPackage ./dwl.nix { };
-          dwl-grav = pkgs.dwl.overrideAttrs (old: {
-            src = ./.;
-            version = "0.8-dev";
-            dependencies = with pkgs; [
-              libinput
-              libxcb
-              libxkbcommon
-              pixman
-              wayland
-              wayland-protocols
-              wlroots
-              libX11
-              xcbutilwm
-              xwayland
-            ];
-          });
+          dwl-grav = pkgs.callPackage ./dwl.nix { };
         in
         {
           dwl-grav = dwl-grav;
