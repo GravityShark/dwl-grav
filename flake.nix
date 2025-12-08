@@ -15,7 +15,7 @@
       packages.${system} =
         let
           # dwl-grav = pkgs.callPackage ./dwl.nix { };
-          dwl-grav = (pkgs.dwl.override { configH = ./config.h; }).overrideAttrs (old: {
+          dwl-grav = pkgs.dwl.overrideAttrs (old: {
             src = ./.;
             version = "0.8-dev";
           });
