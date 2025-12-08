@@ -2707,7 +2707,6 @@ spawnorfocus(const Arg *arg)
 			return;
 		}
 	}
-	arg->v++;
 	a.v = ((const char **)a.v) + 1;
 	spawn(arg);
 }
