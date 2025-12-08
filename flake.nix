@@ -15,7 +15,11 @@
       packages.${system} =
         let
           dwl-grav = pkgs.dwl.overrideAttrs (old: {
+            version = "0.8-dev";
             src = self;
+            buildInputs = with pkgs; [
+              wlroots_0_19
+            ];
           });
         in
         {
@@ -23,4 +27,5 @@
           default = dwl-grav;
         };
     };
+
 }
