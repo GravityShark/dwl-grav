@@ -3,6 +3,9 @@ this is just my fork yo
 ## todo
 
 1. mouse cursor
+2. notifications
+3. shell
+4. wallpaper
 
 ## my own instructions to keep this up to date with upstream
 
