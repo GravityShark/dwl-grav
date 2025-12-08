@@ -330,6 +330,7 @@ static void setpsel(struct wl_listener *listener, void *data);
 static void setsel(struct wl_listener *listener, void *data);
 static void setup(void);
 static void spawn(const Arg *arg);
+static void spawnorfocus(const Arg *arg);
 static void startdrag(struct wl_listener *listener, void *data);
 static void tag(const Arg *arg);
 static void tagmon(const Arg *arg);
@@ -2670,11 +2671,48 @@ spawn(const Arg *arg)
 {
 	if (fork() == 0) {
 		dup2(STDERR_FILENO, STDOUT_FILENO);
-		setsid();
+		setsid()
 		execvp(((char **)arg->v)[0], (char **)arg->v);
 		die("dwl: execvp %s failed:", ((char **)arg->v)[0]);
 	}
 }
+
+void
+spawnorfocus(const Arg *arg)
+{
+	Client *c;
+	unsigned int found = 0;
+
+	/* search for first window that matches the scratchkey */
+	wl_list_for_each(c, &clients, link) {
+		if (c->scratchkey == ((char**)arg->v)[0][0]) {
+			found = 1;
+			break;
+		}
+	}
+
+
+	if (found) {
+		if (VISIBLEON(c, selmon)) {
+			if (focustop(selmon) == c) {
+				// hide
+				c->tags = 0;
+				focusclient(focustop(selmon), 1);
+			} else {
+				// focus
+				focusclient(c, 1);
+			}
+		} else {
+			// show
+			c->tags = selmon->tagset[selmon->seltags];
+			focusclient(c, 1);
+		}
+		arrange(selmon);
+	} else{
+		spawn(arg);
+	}
+}
+
 
 void
 startdrag(struct wl_listener *listener, void *data)
