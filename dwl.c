@@ -2688,7 +2688,7 @@ spawnorfocus(const Arg *arg)
 	wl_list_for_each(c, &clients, link) 
 		if (strstr(client_get_title(c), needle)
 				|| strstr(client_get_appid(c), needle)) {
-			selmon = c->mon
+			selmon = c->mon;
 			if (!(c->tags & selmon->tagset[selmon->seltags])) 
 				selmon->tagset[selmon->seltags] = c->tags;
 
