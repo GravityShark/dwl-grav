@@ -2690,6 +2690,8 @@ spawnorfocus(const Arg *arg)
 				|| strstr(client_get_appid(c), needle)) {
 			if (!VISIBLEON(c, selmon)) {
 				selmon->tagset[selmon->seltags] = c->tags;
+			} else {
+				c->tags = selmon->tagset[selmon->seltags];
 			}
 			focusclient(c, 1);
 			arrange(selmon);
