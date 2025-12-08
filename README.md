@@ -1,5 +1,9 @@
 this is just my fork yo
 
+## todo
+
+1. mouse cursor
+
 ## my own instructions to keep this up to date with upstream
 
 1. `git fetch upstream`
