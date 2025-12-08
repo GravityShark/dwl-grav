@@ -7,4 +7,4 @@ fi
 base=$(basename $1 .patch)
 git switch $base || git switch -c $base
 cd $(git rev-parse --show-toplevel)
-git am -3 patches/$1
+git am -3 patches/$1 #&& git switch grav

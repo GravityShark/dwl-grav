@@ -26,10 +26,7 @@
    - norway we needed a patch for this :pray:
 7. [pertag](./pertag.patch)
    - makes each tag to have its own layout mfact and nmaster, cause thats not default
-8. [tmux-borders](./tmux-borders-0.7.patch)
-   - make the borders actually stand out and you can see it and it looks good
-   - and its distinguishable
-9. [warpcursor](./warpcursor.patch)
+8. [warpcursor](./warpcursor.patch)
    - moves the cursor in the currently focused client
 
 ## extras
@@ -79,7 +76,10 @@
 19. [tearing](./tearing-0.7.patch)
     - adds a window rule where you can configure something to allow screen tearing
     - usually for videogames
-20. [toggle_constraints](./toggle_constraints.patch)
+20. [tmux-borders](./tmux-borders-0.7.patch)
+    - make the borders actually stand out and you can see it and it looks good
+    - and its distinguishable
+21. [toggle_constraints](./toggle_constraints.patch)
     - allows you to toggle if your pointer can get restricted by apps (e.g.
       fullscreen videogames)
-21. [xwayland-handle-minimize.patch](./xwayland-handle-minimize.patch)
+22. [xwayland-handle-minimize.patch](./xwayland-handle-minimize.patch)
