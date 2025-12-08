@@ -1,5 +1,4 @@
 {
-  self,
   lib,
   installShellFiles,
   libX11,
@@ -41,7 +40,7 @@ stdenv.mkDerivation (finalAttrs: {
   pname = "dwl";
   version = "0.8-dev";
 
-  src = self;
+  src = ./.;
 
   nativeBuildInputs = [
     installShellFiles
