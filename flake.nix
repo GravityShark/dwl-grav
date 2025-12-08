@@ -14,7 +14,7 @@
     {
       packages.${system} =
         let
-          dwl-grav = (pkgs.dwl.override { configH = ./config.h; }).overrideAttrs (old: {
+          dwl-grav = pkgs.dwl.overrideAttrs (old: {
             src = self;
           });
         in
